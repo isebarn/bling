@@ -95,7 +95,7 @@ export default function App() {
     axios.get('https://storyapi.isebarn.com/api/story?$include=chapters,chapters__choices')
       .then(response => {
         setData(response.data);
-        setChapterId(data[0].chapters[0].id)
+        setChapterId(response.data[0].chapters[0].id)
         setLoading(false)
       })
       .catch(error => {
@@ -106,7 +106,6 @@ export default function App() {
   if (loading) {
     return <Text>Loading...</Text>;
   }
-
   return <Layout1
     story={data[0]}
     chapterId={chapterId}
